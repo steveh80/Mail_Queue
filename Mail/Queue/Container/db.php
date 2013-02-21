@@ -226,7 +226,7 @@ class Mail_Queue_Container_db extends Mail_Queue_Container
      * @access public
      **/
     function put($time_to_send, $id_user, $ip, $sender,
-                $recipient, $headers, $body, $delete_after_send=true)
+                $recipient, $headers, $body, $delete_after_send=true, $type='', $type_id=0)
     {
         if (!is_object($this->db) || !is_a($this->db, 'DB_Common')) {
             $msg = 'DB::connect failed';
@@ -243,8 +243,8 @@ class Mail_Queue_Container_db extends Mail_Queue_Container
                 'Cannot create id in: '.$this->sequence);
         }
         $query = sprintf("INSERT INTO %s (id, create_time, time_to_send, id_user, ip,
-                        sender, recipient, headers, body, delete_after_send)
-                        VALUES(%d, '%s', '%s', %d, '%s', '%s', '%s', '%s', '%s', %d)",
+                        sender, recipient, headers, body, delete_after_send, type, type_id)
+                        VALUES(%d, '%s', '%s', %d, '%s', '%s', '%s', '%s', '%s', %d, '%s', %d)",
                          $this->mail_table,
                          $id,
                          addslashes(date('Y-m-d H:i:s')),
@@ -255,7 +255,9 @@ class Mail_Queue_Container_db extends Mail_Queue_Container
                          addslashes($recipient),
                          addslashes($headers),
                          addslashes($body),
-                         $delete_after_send
+                         $delete_after_send,
+                         addslashes($type),
+                         $type_id
         );
 
         $res = $this->db->query($query);

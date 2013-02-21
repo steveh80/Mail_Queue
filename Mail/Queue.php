@@ -556,7 +556,7 @@ class Mail_Queue extends PEAR
      *
      * @access public
      */
-    function put($from, $to, $hdrs, $body, $sec_to_send=0, $delete_after_send=true, $id_user=MAILQUEUE_SYSTEM)
+    function put($from, $to, $hdrs, $body, $sec_to_send=0, $delete_after_send=true, $id_user=MAILQUEUE_SYSTEM, $type='', $type_id=0)
     {
         $ip = getenv('REMOTE_ADDR');
 
@@ -570,7 +570,9 @@ class Mail_Queue extends PEAR
             serialize($to),
             serialize($hdrs),
             serialize($body),
-            $delete_after_send
+            $delete_after_send,
+            $type,
+            $type_id
         );
     }
 
