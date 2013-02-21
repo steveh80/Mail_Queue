@@ -1,0 +1,14 @@
+{
+    "name": "pear/mail_queue2",
+    "type": "library",
+    "version": "1.0.0",
+    "license": "BSD-2-Clause",
+    "description": "A fork of pear mail_queue.",
+    "homepage": "https://github.com/steveh80/Mail_Queue",
+    "require": {
+        "php": ">=5.0.0"
+    },
+   "autoload": {
+        "psr-0": { "mail_queue2": "" }
+    }
+}
