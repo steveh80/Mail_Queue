@@ -8,7 +8,12 @@
     "require": {
         "php": ">=5.0.0"
     },
-   "autoload": {
-        "psr-0": { "mail_queue2": "" }
-    }
+    "autoload": {
+        "classmap": [
+            ""
+        ]
+    },
+    "include-path": [
+        "/"
+    ]
 }
